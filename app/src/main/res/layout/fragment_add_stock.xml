@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    tools:context=".ui.add.AddStockFragment">
+
+    <TextView
+        android:id="@+id/textView6"
+        style="@style/TextStyle.Regular15.TextColor1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="إضافة عملة"
+        android:paddingBottom="20dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textField"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="اسم العملة"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/currency_name"
+            style="@style/TextStyle.Regular14.TextColor1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text"
+            android:maxLines="1"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/add_currency_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="add"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/background_1"
+        app:layout_constraintEnd_toEndOf="@+id/textField"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textField" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

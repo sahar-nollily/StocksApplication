@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextStyle">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextStyle.Regular13.TextColor1" parent="TextStyle">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_color_1</item>
+    </style>
+    <style name="TextStyle.Regular13.TextColor2" parent="TextStyle">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_color_2</item>
+    </style>
+    <style name="TextStyle.Regular13.TextColor3" parent="TextStyle">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_color_3</item>
+    </style>
+    <style name="TextStyle.Regular13.TextColor4" parent="TextStyle.Bold">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_color_4</item>
+    </style>
+    <style name="TextStyle.Regular13.TextColor5" parent="TextStyle.Bold">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_color_5</item>
+    </style>
+
+
+    <style name="TextStyle.Regular14.TextColor1" parent="TextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_1</item>
+    </style>
+
+    <style name="TextStyle.Regular14.TextColor2" parent="TextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_2</item>
+    </style>
+    <style name="TextStyle.Regular14.TextColor3" parent="TextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_3</item>
+    </style>
+    <style name="TextStyle.Regular14.TextColor4" parent="TextStyle.Bold">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_4</item>
+    </style>
+    <style name="TextStyle.Regular14.TextColor5" parent="TextStyle.Bold">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_5</item>
+    </style>
+
+
+
+    <style name="TextStyle.Regular15.TextColor1" parent="TextStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_1</item>
+    </style>
+    <style name="TextStyle.Regular15.TextColor2" parent="TextStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_2</item>
+    </style>
+    <style name="TextStyle.Regular15.TextColor3" parent="TextStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_3</item>
+    </style>
+    <style name="TextStyle.Regular15.TextColor4" parent="TextStyle.Bold">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_4</item>
+    </style>
+    <style name="TextStyle.Regular15.TextColor5" parent="TextStyle.Bold">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_5</item>
+    </style>
+
+
+    <style name="TextStyle.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextStyle.Bold13.TextColor1" parent="TextStyle.Bold">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_color_1</item>
+    </style>
+    <style name="TextStyle.Bold13.TextColor2" parent="TextStyle.Bold">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_color_2</item>
+    </style>
+    <style name="TextStyle.Bold13.TextColor3" parent="TextStyle.Bold">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_color_3</item>
+    </style>
+    <style name="TextStyle.Bold13.TextColor4" parent="TextStyle.Bold">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_color_4</item>
+    </style>
+    <style name="TextStyle.Bold13.TextColor5" parent="TextStyle.Bold">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_color_5</item>
+    </style>
+
+
+
+
+
+    <style name="TextStyle.Bold14.TextColor1" parent="TextStyle.Bold">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_1</item>
+    </style>
+    
+    <style name="TextStyle.Bold14.TextColor2" parent="TextStyle.Bold">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_2</item>
+    </style>
+    <style name="TextStyle.Bold14.TextColor3" parent="TextStyle.Bold">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_3</item>
+    </style>
+    <style name="TextStyle.Bold14.TextColor4" parent="TextStyle.Bold">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_4</item>
+    </style>
+    <style name="TextStyle.Bold14.TextColor5" parent="TextStyle.Bold">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_5</item>
+    </style>
+
+
+
+
+    <style name="TextStyle.Bold15.TextColor1" parent="TextStyle.Bold">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_1</item>
+    </style>
+    <style name="TextStyle.Bold15.TextColor2" parent="TextStyle.Bold">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_2</item>
+    </style>
+    <style name="TextStyle.Bold15.TextColor3" parent="TextStyle.Bold">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_3</item>
+    </style>
+    <style name="TextStyle.Bold15.TextColor4" parent="TextStyle.Bold">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_4</item>
+    </style>
+    <style name="TextStyle.Bold15.TextColor5" parent="TextStyle.Bold">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_5</item>
+    </style>
+
+    
+    
+    
+    
+</resources>
