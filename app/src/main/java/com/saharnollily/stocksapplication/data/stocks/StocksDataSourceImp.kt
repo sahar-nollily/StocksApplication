@@ -1,7 +1,7 @@
 package com.saharnollily.stocksapplication.data.stocks
 
 import com.saharnollily.stocksapplication.models.Currency
-import com.saharnollily.stocksapplication.models.CurrencyInformation
+import com.saharnollily.stocksapplication.models.Stock
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -13,8 +13,12 @@ class StocksDataSourceImp @Inject constructor(private val stocksDao: StocksDao):
         stocksDao.addCurrency(currency)
     }
 
-    override suspend fun addStock(currencyInformation: CurrencyInformation) {
-        stocksDao.addStock(currencyInformation)
+    override suspend fun addStock(stock: Stock) {
+        stocksDao.addStock(stock)
+    }
+
+    override suspend fun updateCurrency(currency: Currency) {
+        stocksDao.updateCurrency(currency)
     }
 
     override fun getCurrencies(): Flow<List<Currency>> {
@@ -26,7 +30,7 @@ class StocksDataSourceImp @Inject constructor(private val stocksDao: StocksDao):
         return stocksDao.getCurrencyById(id)
     }
 
-    override fun getCurrencyInformation(id: Int): Flow<List<CurrencyInformation>> {
+    override fun getCurrencyInformation(id: Int): Flow<List<Stock>> {
         return stocksDao.getCurrencyInformation(id)
     }
 }

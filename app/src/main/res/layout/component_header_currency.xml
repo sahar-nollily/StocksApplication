@@ -3,70 +3,128 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:padding="10dp">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_dollar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/currency_name"
-        style="@style/TextStyle.Regular15.TextColor5"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/imageView2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/gold_coin" />
+
+        <TextView
+            android:id="@+id/currency_name"
+            style="@style/TextStyle.Regular15.TextColor5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            tools:text="Stock Name "
+            android:textAlignment="viewStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/TextStyle.Bold13.TextColor1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/stock_quantity"
+            android:textAlignment="viewStart"
+            app:layout_constraintStart_toStartOf="@+id/currency_name"
+            app:layout_constraintTop_toBottomOf="@+id/currency_name" />
+
+        <TextView
+            android:id="@+id/stock_number"
+            style="@style/TextStyle.Bold13.TextColor2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="5 Stocks"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/TextStyle.Bold13.TextColor1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/usdt"
+            android:textAlignment="viewStart"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/usdt"
+            style="@style/TextStyle.Bold13.TextColor2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="450$"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toTopOf="@+id/textView5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stock Name "
-        android:layout_marginStart="10dp"
-        android:textAlignment="viewStart"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView3"
-        style="@style/TextStyle.Bold13.TextColor1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Stock Number : "
-        android:textAlignment="viewStart"
-        app:layout_constraintStart_toStartOf="@+id/currency_name"
-        app:layout_constraintTop_toBottomOf="@+id/currency_name" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/current_purchase_price" />
 
-    <TextView
-        android:id="@+id/stock_number"
-        style="@style/TextStyle.Bold13.TextColor2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5 Stocks"
-        android:textAlignment="viewStart"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
 
-    <TextView
-        android:id="@+id/textView5"
-        style="@style/TextStyle.Bold13.TextColor1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="USDT: "
-        android:textAlignment="viewStart"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/stockPriceTextField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="12sp">
 
-    <TextView
-        android:id="@+id/usdt"
-        style="@style/TextStyle.Bold13.TextColor2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="450$"
-        android:textAlignment="viewStart"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/stockPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:maxLines="1" />
 
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/newUSDT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            tools:text="3093" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

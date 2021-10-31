@@ -9,7 +9,7 @@ import com.saharnollily.stocksapplication.models.Currency
 
 class CurrenciesListAdapter(
     private val currencies: List<Currency>,
-    private val navigateToDetails: (Int) -> Unit
+    private val navigateToDetails: (Currency) -> Unit
     ):RecyclerView.Adapter<CurrenciesListAdapter.CurrenciesHolder>() {
 
 
@@ -34,7 +34,7 @@ class CurrenciesListAdapter(
             binding.currencyItem.setTotalPrice(currency.totalPrice)
 
             binding.root.setOnClickListener {
-                navigateToDetails(currency.currencyId)
+                navigateToDetails(currency)
             }
         }
 
