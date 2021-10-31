@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +17,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.saharnollily.stocksapplication.R
 import com.saharnollily.stocksapplication.databinding.ComponentHeaderCurrencyBinding
+import com.saharnollily.stocksapplication.utils.hide
+import com.saharnollily.stocksapplication.utils.round
+import com.saharnollily.stocksapplication.utils.show
 
 
 class ComponentHeaderCurrency @JvmOverloads constructor(
@@ -28,13 +33,17 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
     private val currencyName = binding.currencyName
     private val stockNumber = binding.stockNumber
     private val totalPrice = binding.usdt
+    private val calculatorLinearLayout = binding.linearLayout
+    private val stockPrice = binding.stockPrice
+    private val newUSDT = binding.newUSDT
+
 
     fun setCurrencyName(name: String?, changeColor: Boolean= false){
         name?.let {
             currencyName.text = it.capitalize(Locale.current)
         }
         if(changeColor)
-            currencyName.setTextColor(context.resources.getColor(R.color.background_1,null))
+            currencyName.setTextColor(context.resources.getColor(R.color.text_color_6,null))
 
     }
 
@@ -47,7 +56,7 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
     @SuppressLint("SetTextI18n")
     fun setTotalPrice(total: Float?){
         total?.let {
-            totalPrice.text = "$it$"
+            totalPrice.text = "${it}$"
         }
     }
 
@@ -59,4 +68,40 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
 
         binding.root.background = d
     }
+
+    fun setCalculator(showCalculator: Boolean = false, stockNumber: Int = 0, totalPrice: Float ){
+        if(showCalculator){
+            calculatorLinearLayout.show()
+        }else{
+            calculatorLinearLayout.hide()
+        }
+
+        newUSDT.setText("$totalPrice")
+
+
+
+        stockPrice.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if(!p0.isNullOrEmpty() && totalPrice != 0f) {
+                    newUSDT.setText(
+                        "${stockNumber * p0.toString().toFloat()}"
+                    )
+                    stockPrice.error = null
+                }else if(p0.isNullOrEmpty()){
+                    stockPrice.error = null
+                }
+                else if(totalPrice == 0f){
+                    stockPrice.error = "نعتذر لاتوجد لديك اسهم"
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+        })
+    }
+
 }

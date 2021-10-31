@@ -5,13 +5,14 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.saharnollily.stocksapplication.R
 import com.saharnollily.stocksapplication.base.viewBinding
 import com.saharnollily.stocksapplication.databinding.FragmentHomeBinding
 import com.saharnollily.stocksapplication.models.Currency
+import com.saharnollily.stocksapplication.ui.SharedViewModel
 import com.saharnollily.stocksapplication.utils.hide
 import com.saharnollily.stocksapplication.utils.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +22,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModels()
-    private val navigateToDetails: (Int) -> Unit = {
-        val action = HomeFragmentDirections.actionHomeFragmentToCurrencyDetailsFragment(it)
+    private val sharedViewModel by lazy { ViewModelProvider(requireActivity()).get(SharedViewModel::class.java) }
+
+
+    private val navigateToDetails: (Currency) -> Unit = {
+        sharedViewModel.currencey.postValue(it)
+        val action = HomeFragmentDirections.actionHomeFragmentToCurrencyDetailsFragment(it.currencyId)
         findNavController().navigate(action)
     }
 

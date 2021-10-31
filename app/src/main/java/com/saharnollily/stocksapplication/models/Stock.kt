@@ -10,9 +10,9 @@ import androidx.room.PrimaryKey
     childColumns = arrayOf("currencyId"),
     onDelete = ForeignKey.CASCADE
 )])
-data class CurrencyInformation(
-    val  currencyId: Int? = 0,
+data class Stock(
     @PrimaryKey(autoGenerate = true)val stockId: Int? = 0,
+    val currencyId: Int? = 0,
     val stockQuantity: Int? = 1,
     val purchasingPrice: Float? = 0f,
     val totalAmount: Float? = 0f

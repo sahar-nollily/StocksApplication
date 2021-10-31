@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="عملاتك"
+        android:text="@string/your_currency"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
         android:id="@+id/no_data_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="لم تتم اضافة اي عملة"
+        android:text="@string/no_currency_added"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
         app:layout_constraintTop_toTopOf="@+id/textView" />
@@ -47,7 +47,7 @@
         app:backgroundTint="@color/background_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="add new stocks" />
+        android:contentDescription="@string/add_currency" />
 
     <View
         style="@style/divider"

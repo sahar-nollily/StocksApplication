@@ -12,7 +12,7 @@
         style="@style/TextStyle.Regular15.TextColor1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="إضافة عملة"
+        android:text="@string/add_currency"
         android:paddingBottom="20dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/textField"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="اسم العملة"
+        android:hint="@string/currency_name"
         app:layout_constraintTop_toBottomOf="@+id/textView6">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -41,7 +41,7 @@
         android:id="@+id/add_currency_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="add"
+        android:text="@string/add"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/background_1"
         app:layout_constraintEnd_toEndOf="@+id/textField"
