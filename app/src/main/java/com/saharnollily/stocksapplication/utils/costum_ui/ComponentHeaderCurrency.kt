@@ -15,9 +15,11 @@ import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.intl.Locale
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import com.saharnollily.stocksapplication.R
 import com.saharnollily.stocksapplication.databinding.ComponentHeaderCurrencyBinding
 import com.saharnollily.stocksapplication.utils.hide
+import com.saharnollily.stocksapplication.utils.invisible
 import com.saharnollily.stocksapplication.utils.round
 import com.saharnollily.stocksapplication.utils.show
 
@@ -36,6 +38,9 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
     private val calculatorLinearLayout = binding.linearLayout
     private val stockPrice = binding.stockPrice
     private val newUSDT = binding.newUSDT
+    private val editIcon = binding.edit
+    private val currencyNameEditText = binding.currencyNameEditText
+    private val priceDifference = binding.priceDifference
 
 
     fun setCurrencyName(name: String?, changeColor: Boolean= false){
@@ -89,13 +94,15 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
                     newUSDT.setText(
                         "${stockNumber * p0.toString().toFloat()}"
                     )
-                    stockPrice.error = null
+                    priceDifference.text = "${context.getString(R.string.price_difference)} ${newUSDT.text.toString().toFloat() - totalPrice }"
+                        stockPrice.error = null
                 }else if(p0.isNullOrEmpty()){
                     stockPrice.error = null
                 }
                 else if(totalPrice == 0f){
-                    stockPrice.error = "نعتذر لاتوجد لديك اسهم"
-                }
+                    stockPrice.error = context.getString(R.string.no_stock)
+                }else
+                    stockPrice.error = null
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -103,5 +110,26 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
 
         })
     }
+
+    fun showEditIcon(showing: Boolean = false, updateItem: (String, Int) -> Unit, currencyId: Int){
+        if (showing)
+            editIcon.show()
+        else
+            editIcon.hide()
+
+        editIcon.setOnClickListener {
+            if(currencyNameEditText.visibility == View.VISIBLE){
+                updateItem(currencyNameEditText.text.toString(), currencyId)
+                currencyName.show()
+                currencyNameEditText.invisible()
+            }
+            else{
+                currencyNameEditText.setText(currencyName.text)
+                currencyNameEditText.show()
+                currencyName.hide()
+            }
+        }
+    }
+
 
 }

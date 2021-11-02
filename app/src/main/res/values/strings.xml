@@ -14,4 +14,7 @@
     <string name="save">Save</string>
     <string name="your_currency">Your Currency</string>
     <string name="no_currency_added">No Currency Added</string>
+    <string name="no_stock">There is no stocks</string>
+    <string name="price_difference">Price Difference =</string>
+    <string name="average_price">Average Price :</string>
 </resources>

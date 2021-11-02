@@ -1,10 +1,12 @@
 package com.saharnollily.stocksapplication.ui.home
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,12 +18,15 @@ import com.saharnollily.stocksapplication.ui.SharedViewModel
 import com.saharnollily.stocksapplication.utils.hide
 import com.saharnollily.stocksapplication.utils.show
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.log
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModels()
+    private var currenciesListAdapter: CurrenciesListAdapter? = null
+
     private val sharedViewModel by lazy { ViewModelProvider(requireActivity()).get(SharedViewModel::class.java) }
 
 
@@ -29,6 +34,30 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         sharedViewModel.currencey.postValue(it)
         val action = HomeFragmentDirections.actionHomeFragmentToCurrencyDetailsFragment(it.currencyId)
         findNavController().navigate(action)
+    }
+
+
+    private val deleteItem: (Int, Int) -> Unit = {position, id ->
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setTitle("Are you sure?")
+        dialog.setPositiveButton("Yes") { dialogInterface, i ->
+            viewModel.deleteCurrency(id)
+            viewModel.currencyList.removeAt(position)
+            currenciesListAdapter?.notifyItemRemoved(position)
+
+        }
+
+        dialog.setNegativeButton("No") { dialogInterface, i ->
+            dialogInterface.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private val updateItem: (String, Int) -> Unit = {name, id ->
+        currenciesListAdapter?.notifyDataSetChanged()
+        viewModel.updateCurrencyName(id, name)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,6 +72,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun initObserve(){
         viewModel.event.observe(viewLifecycleOwner,{initEvent(it)})
         viewModel.getAllCurrency.observe(viewLifecycleOwner,{fillGui(it)})
+
+//
+//        if(viewModel.currencyList.isNullOrEmpty())
+//            viewModel.getAllCurrency.observe(viewLifecycleOwner,{fillGui(it)})
+//        else
+//            setupRecyclerView()
     }
 
     private fun initEvent(stockEvent: HomeViewModel.StockEvent) {
@@ -72,15 +107,28 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun fillGui(currencies: List<Currency>){
-        if(currencies.isNullOrEmpty()){
+        viewModel.currencyList.clear()
+        viewModel.currencyList.addAll(currencies)
+
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView(){
+        if(viewModel.currencyList.isNullOrEmpty()){
             binding.noDataTextView.show()
             binding.recyclerView.hide()
         }else{
             binding.noDataTextView.hide()
             binding.recyclerView.show()
+            currenciesListAdapter = CurrenciesListAdapter(
+                viewModel.currencyList,
+                navigateToDetails,
+                deleteItem,
+                updateItem
+            )
             binding.recyclerView.apply {
-                adapter = CurrenciesListAdapter(currencies, navigateToDetails)
                 layoutManager = LinearLayoutManager(requireContext())
+                adapter = currenciesListAdapter
             }
 
         }

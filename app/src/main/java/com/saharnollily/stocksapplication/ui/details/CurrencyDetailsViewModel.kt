@@ -19,6 +19,9 @@ class CurrencyDetailsViewModel @Inject constructor(private val stocksRepository:
 
     var currencey : Currency? = null
     var tempCurrency: Currency? = null
+    var data = mutableListOf<Stock>()
+    val getPurchasingPriceSum = MutableLiveData<Float>()
+
 
     fun addCurrencyInformation(currencyId: Int, stockQuantity: Int, purchasingPrice: Float, totalAmount: Float) {
         viewModelScope.launch {
@@ -65,6 +68,15 @@ class CurrencyDetailsViewModel @Inject constructor(private val stocksRepository:
         viewModelScope.launch {
             tempCurrency?.let { stocksRepository.updateCurrency(it) }
             setEvent { StockEvent.SuccessUpdate(true) }
+        }
+    }
+
+    fun getSum(id: Int){
+        viewModelScope.launch {
+            val result = stocksRepository.getPurchasingPriceSum(id)
+            if(result != null)
+                getPurchasingPriceSum.postValue(result)
+
         }
     }
 

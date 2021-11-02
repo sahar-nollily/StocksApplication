@@ -1,5 +1,6 @@
 package com.saharnollily.stocksapplication.data.stocks
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -28,4 +29,13 @@ interface StocksDao {
 
     @Query("SELECT * From Stock WHERE currencyId =:id ")
     fun getCurrencyInformation(id: Int): Flow<List<Stock>>
+
+    @Query("DELETE FROM Currency WHERE currencyId = :id")
+    suspend fun deleteCurrency(id: Int)
+
+    @Query("UPDATE Currency SET name = :name WHERE currencyId = :id")
+    suspend fun updateCurrencyName(id: Int, name: String)
+
+    @Query("SELECT SUM(purchasingPrice) FROM stock WHERE currencyId = :id")
+    suspend fun getPurchasingPriceSum(id: Int): Float?
 }

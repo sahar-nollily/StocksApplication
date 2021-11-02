@@ -10,6 +10,10 @@ fun View.show(){
     visibility = View.VISIBLE
 }
 
+fun View.invisible(){
+    visibility = View.INVISIBLE
+}
+
 fun Float.round(decimals: Int = 2): Float = "%,${decimals}f".format(this).toFloat()
 
 fun String.replaceArabicNumber(): String{

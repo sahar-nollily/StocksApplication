@@ -11,8 +11,9 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val stocksRepository: StocksRepository): BaseViewModel<HomeViewModel.StockEvent>() {
 
-    val getAllCurrency: LiveData<List<Currency>>  = stocksRepository.getCurrencies().asLiveData()
+    var currencyList = mutableListOf<Currency>()
 
+    val getAllCurrency: LiveData<List<Currency>>  = stocksRepository.getCurrencies().asLiveData()
 
     fun getCurrencyById(id: Int?){
         viewModelScope.launch {
@@ -28,6 +29,17 @@ class HomeViewModel @Inject constructor(private val stocksRepository: StocksRepo
         }
     }
 
+    fun deleteCurrency(id: Int){
+        viewModelScope.launch {
+            stocksRepository.deleteCurrency(id)
+        }
+    }
+
+    fun updateCurrencyName(id: Int, name: String){
+        viewModelScope.launch {
+            stocksRepository.updateCurrencyName(id, name)
+        }
+    }
 
     sealed class StockEvent{
         data class Success( val data: Currency?): HomeViewModel.StockEvent()

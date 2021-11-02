@@ -1,5 +1,6 @@
 package com.saharnollily.stocksapplication.repository
 
+import androidx.lifecycle.LiveData
 import com.saharnollily.stocksapplication.data.stocks.StocksDataSource
 import com.saharnollily.stocksapplication.models.Currency
 import com.saharnollily.stocksapplication.models.Stock
@@ -33,4 +34,17 @@ class StocksRepository @Inject constructor(private val stocksDataSource: StocksD
     fun getCurrencyInformation(id: Int): Flow<List<Stock>> {
         return stocksDataSource.getCurrencyInformation(id)
     }
+
+    suspend fun deleteCurrency(id: Int){
+        return stocksDataSource.deleteCurrency(id)
+    }
+
+    suspend fun updateCurrencyName(id: Int, name: String){
+        return stocksDataSource.updateCurrencyName(id, name)
+    }
+
+    suspend fun getPurchasingPriceSum(id: Int): Float?{
+        return stocksDataSource.getPurchasingPriceSum(id)
+    }
+
 }

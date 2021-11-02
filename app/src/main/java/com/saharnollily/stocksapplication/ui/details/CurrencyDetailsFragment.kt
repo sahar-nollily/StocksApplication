@@ -1,6 +1,7 @@
 package com.saharnollily.stocksapplication.ui.details
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -32,13 +33,11 @@ class CurrencyDetailsFragment : Fragment(R.layout.fragment_currency_details) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getCurrencyInformation(args.currencyId)
+        viewModel.getSum(args.currencyId)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initObserver()
         setListener()
 
@@ -51,7 +50,20 @@ class CurrencyDetailsFragment : Fragment(R.layout.fragment_currency_details) {
 
         })
         viewModel.event.observe(viewLifecycleOwner,{ initEvent(it)})
+
         sharedViewModel.currencey.observe(viewLifecycleOwner,{fillGUI(it)})
+
+        if(viewModel.data.isNullOrEmpty())
+            viewModel.getCurrencyInformation(args.currencyId)
+        else
+            stocksRecyclerView()
+
+        viewModel.getPurchasingPriceSum.observe(viewLifecycleOwner,{
+            if(viewModel.data.size != 0){
+                binding.averagePrice.show()
+                binding.averagePrice.text ="${requireContext().getString(R.string.average_price)} ${it / viewModel.data.size}"
+            }
+        })
     }
 
 
@@ -87,7 +99,7 @@ class CurrencyDetailsFragment : Fragment(R.layout.fragment_currency_details) {
             binding.saveStockButton.hide()
             binding.componentAddStock.clearView()
             binding.addStockButton.isEnabled = true
-
+            viewModel.getSum(args.currencyId)
         }
     }
 
@@ -97,18 +109,22 @@ class CurrencyDetailsFragment : Fragment(R.layout.fragment_currency_details) {
         }
     }
     private fun onSuccess(data: LiveData<List<Stock>>?) {
-        data?.observe(viewLifecycleOwner,{ stocksRecyclerView(it) })
+        data?.observe(viewLifecycleOwner,{
+            viewModel.data.clear()
+            viewModel.data.addAll(it)
+            stocksRecyclerView()
+        })
 
     }
-    private fun stocksRecyclerView(stock: List<Stock>){
-        if(stock.isNullOrEmpty()){
+    private fun stocksRecyclerView(){
+        if(viewModel.data.isNullOrEmpty()){
             binding.stockHeader.hide()
             binding.stocksRecyclerView.hide()
         }else{
             binding.stockHeader.show()
             binding.stocksRecyclerView.show()
             binding.stocksRecyclerView.apply {
-                adapter = StocksListAdapter(stock)
+                adapter = StocksListAdapter(viewModel.data)
                 layoutManager = LinearLayoutManager(requireContext())
             }
         }
@@ -143,6 +159,7 @@ class CurrencyDetailsFragment : Fragment(R.layout.fragment_currency_details) {
 
         binding.componentAddStock.calculateTotal()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
