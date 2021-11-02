@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StocksApplication</string>
+    <string name="stock_quantity">عدد الوحدات : </string>
+    <string name="usdt">المبلغ الإجمالي : </string>
+    <string name="current_purchase_price">سعر الشراء الحالي</string>
+    <string name="quantity">الكمية</string>
+    <string name="purchasing_price">سعر الشراء</string>
+    <string name="price">سعر الشراء</string>
+    <string name="total_amount">المبلغ الاجمالي</string>
+    <string name="add_currency">إضافة عملة</string>
+    <string name="currency_name">اسم العملة</string>
+    <string name="add">إضافة</string>
+    <string name="buying_new_stock">شراء سهم جديد</string>
+    <string name="save">حفظ</string>
+    <string name="your_currency">عملاتك</string>
+    <string name="no_currency_added">لم تتم اضافة اي عملة</string>
+    <string name="no_stock">نعتذر لاتوجد لديك اسهم</string>
+    <string name="price_difference">فرق السعر = </string>
+    <string name="average_price">المتوسط السعري :</string>
+
+</resources>
