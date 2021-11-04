@@ -15,7 +15,9 @@ import com.saharnollily.stocksapplication.databinding.FragmentCurrencyDetailsBin
 import com.saharnollily.stocksapplication.models.Currency
 import com.saharnollily.stocksapplication.models.Stock
 import com.saharnollily.stocksapplication.ui.SharedViewModel
+import com.saharnollily.stocksapplication.utils.CreateConfirmationDialog
 import com.saharnollily.stocksapplication.utils.hide
+import com.saharnollily.stocksapplication.utils.round
 import com.saharnollily.stocksapplication.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,8 +29,17 @@ class CurrencyDetailsFragment : Fragment(R.layout.fragment_currency_details) {
     private val sharedViewModel by lazy { ViewModelProvider(requireActivity()).get(SharedViewModel::class.java) }
     private val args by navArgs<CurrencyDetailsFragmentArgs>()
 
-    private val addNewStock : (Int,Float,Float) -> Unit = { stockQuantity, purchasingPrice , totalAmount ->
+    private val addNewStock : (Float,Float,Float) -> Unit = { stockQuantity, purchasingPrice , totalAmount ->
         viewModel.addCurrencyInformation(args.currencyId, stockQuantity,purchasingPrice, totalAmount)
+    }
+
+    private val deleteStock: (Int, Int) -> Unit = {id, position ->
+        CreateConfirmationDialog.showAlert(requireContext()){
+            if(it) {
+                viewModel.deleteStock(id)
+                viewModel.data.removeAt(position)
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +72,8 @@ class CurrencyDetailsFragment : Fragment(R.layout.fragment_currency_details) {
         viewModel.getPurchasingPriceSum.observe(viewLifecycleOwner,{
             if(viewModel.data.size != 0){
                 binding.averagePrice.show()
-                binding.averagePrice.text ="${requireContext().getString(R.string.average_price)} ${it / viewModel.data.size}"
+                val round = it / viewModel.data.size
+                binding.averagePrice.text ="${requireContext().getString(R.string.average_price)} ${round.round()}"
             }
         })
     }
@@ -124,7 +136,7 @@ class CurrencyDetailsFragment : Fragment(R.layout.fragment_currency_details) {
             binding.stockHeader.show()
             binding.stocksRecyclerView.show()
             binding.stocksRecyclerView.apply {
-                adapter = StocksListAdapter(viewModel.data)
+                adapter = StocksListAdapter(viewModel.data, deleteStock)
                 layoutManager = LinearLayoutManager(requireContext())
             }
         }

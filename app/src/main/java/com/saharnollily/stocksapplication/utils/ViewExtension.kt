@@ -1,6 +1,8 @@
 package com.saharnollily.stocksapplication.utils
 
+import android.util.Log
 import android.view.View
+import java.util.*
 
 fun View.hide(){
     visibility = View.GONE
@@ -14,26 +16,12 @@ fun View.invisible(){
     visibility = View.INVISIBLE
 }
 
-fun Float.round(decimals: Int = 2): Float = "%,${decimals}f".format(this).toFloat()
-
-fun String.replaceArabicNumber(): String{
-    var result = ""
-    var en = '0'
-    for (ch in this) {
-        en = ch
-        when (ch) {
-            '۰' -> en = '0'
-            '۱' -> en = '1'
-            '۲' -> en = '2'
-            '۳' -> en = '3'
-            '۴' -> en = '4'
-            '۵' -> en = '5'
-            '۶' -> en = '6'
-            '۷' -> en = '7'
-            '۸' -> en = '8'
-            '۹' -> en = '9'
+fun Float.round(decimals: Int = 2): Float
+    {
+        val x = if(this.toString().contains(",")){
+            this.toString().replace(",", ".").toFloat()
+        }else{
+            this
         }
-        result = "${result}$en"
-    }
-    return result
+        return "%.${decimals}f".format(Locale.ENGLISH, x).toFloat()
 }

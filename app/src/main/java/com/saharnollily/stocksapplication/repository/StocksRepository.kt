@@ -39,6 +39,10 @@ class StocksRepository @Inject constructor(private val stocksDataSource: StocksD
         return stocksDataSource.deleteCurrency(id)
     }
 
+    suspend fun deleteStock(id: Int){
+        return stocksDataSource.deleteStock(id)
+    }
+
     suspend fun updateCurrencyName(id: Int, name: String){
         return stocksDataSource.updateCurrencyName(id, name)
     }

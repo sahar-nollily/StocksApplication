@@ -21,6 +21,9 @@ interface StocksDataSource {
 
     suspend fun deleteCurrency(id: Int)
 
+    suspend fun deleteStock(id: Int)
+
+
     suspend fun updateCurrencyName(id: Int, name: String)
 
     suspend fun getPurchasingPriceSum(id: Int): Float?

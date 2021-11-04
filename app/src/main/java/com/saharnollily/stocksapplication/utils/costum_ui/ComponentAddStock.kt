@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.saharnollily.stocksapplication.databinding.ComponentAddStockBinding
 import com.saharnollily.stocksapplication.utils.round
+import java.lang.NumberFormatException
 
 
 class ComponentAddStock @JvmOverloads constructor(
@@ -32,28 +33,31 @@ class ComponentAddStock @JvmOverloads constructor(
         totalAmount.error = null
     }
 
-    fun getStockQuantity(): Int{
-        return if(stockQuantity.text.isNullOrEmpty())
-            0
-        else
-            stockQuantity.text.toString().toInt()
+    fun getStockQuantity(): Float{
+        return try{
+            stockQuantity.text.toString().toFloat()
+        }catch (e: NumberFormatException){
+            0f
+        }
     }
 
     fun getPurchasingPrice(): Float{
-        return if(purchasingPrice.text.isNullOrEmpty())
+        return try{
+            purchasingPrice.text.toString().toFloat() 
+        }catch (e: NumberFormatException){
             0f
-        else
-            purchasingPrice.text.toString().toFloat()
+        }
     }
 
     fun getTotalAmount(): Float{
-        return if(totalAmount.text.isNullOrEmpty())
+        return try{
+            totalAmount.text.toString().toFloat() 
+        }catch (e: NumberFormatException){
             0f
-        else
-            totalAmount.text.toString().toFloat()
+        }
     }
 
-    fun getStockInformation(addNewStock : (Int,Float,Float) -> Unit){
+    fun getStockInformation(addNewStock : (Float,Float,Float) -> Unit){
         addNewStock(getStockQuantity(),getPurchasingPrice(),getTotalAmount())
     }
 
@@ -65,9 +69,9 @@ class ComponentAddStock @JvmOverloads constructor(
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(!p0.isNullOrEmpty() && getStockQuantity() != 0 && getPurchasingPrice() != 0f)
+                if(!p0.isNullOrEmpty() && getStockQuantity() != 0f && getPurchasingPrice() != 0f)
                 totalAmount.setText(
-                    "${getStockQuantity()*p0.toString().toFloat()}"
+                    "${getStockQuantity()*p0.toString().toFloat() }"
                 )
 
                 if(p0.isNullOrEmpty()){
@@ -88,9 +92,9 @@ class ComponentAddStock @JvmOverloads constructor(
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(!p0.isNullOrEmpty() && getStockQuantity() != 0 && getPurchasingPrice() != 0f )
+                if(!p0.isNullOrEmpty() && getStockQuantity() != 0f && getPurchasingPrice() != 0f )
                     totalAmount.setText(
-                        "${getPurchasingPrice()*p0.toString().toFloat()}"
+                        "${getPurchasingPrice()*p0.toString().toFloat() }"
                     )
 
                 if(p0.isNullOrEmpty()){

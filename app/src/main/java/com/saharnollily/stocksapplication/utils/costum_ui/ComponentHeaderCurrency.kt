@@ -52,16 +52,16 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
 
     }
 
-    fun setStockNumber(stockNumber: Int?){
+    fun setStockNumber(stockNumber: Float?){
         stockNumber?.let {
-            this.stockNumber.text = it.toString()
+            this.stockNumber.text = it.round().toString()
         }
     }
 
     @SuppressLint("SetTextI18n")
     fun setTotalPrice(total: Float?){
         total?.let {
-            totalPrice.text = "${it}$"
+            totalPrice.text = "${it.round()}$"
         }
     }
 
@@ -74,14 +74,14 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
         binding.root.background = d
     }
 
-    fun setCalculator(showCalculator: Boolean = false, stockNumber: Int = 0, totalPrice: Float ){
+    fun setCalculator(showCalculator: Boolean = false, stockNumber: Float = 0f, totalPrice: Float ){
         if(showCalculator){
             calculatorLinearLayout.show()
         }else{
             calculatorLinearLayout.hide()
         }
 
-        newUSDT.setText("$totalPrice")
+        newUSDT.setText("${totalPrice.round()}")
 
 
 
@@ -92,9 +92,10 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(!p0.isNullOrEmpty() && totalPrice != 0f) {
                     newUSDT.setText(
-                        "${stockNumber * p0.toString().toFloat()}"
+                        "${stockNumber * p0.toString().toFloat().round()}"
                     )
-                    priceDifference.text = "${context.getString(R.string.price_difference)} ${newUSDT.text.toString().toFloat() - totalPrice }"
+                    val round = newUSDT.text.toString().toFloat() - totalPrice
+                    priceDifference.text = "${context.getString(R.string.price_difference)} ${round.round()}"
                         stockPrice.error = null
                 }else if(p0.isNullOrEmpty()){
                     stockPrice.error = null

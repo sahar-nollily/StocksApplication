@@ -33,6 +33,9 @@ interface StocksDao {
     @Query("DELETE FROM Currency WHERE currencyId = :id")
     suspend fun deleteCurrency(id: Int)
 
+    @Query("DELETE FROM Stock WHERE stockId = :id")
+    suspend fun deleteStock(id: Int)
+
     @Query("UPDATE Currency SET name = :name WHERE currencyId = :id")
     suspend fun updateCurrencyName(id: Int, name: String)
 

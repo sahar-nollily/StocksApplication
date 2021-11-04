@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.saharnollily.stocksapplication.R
 import com.saharnollily.stocksapplication.databinding.ComponentStockListItemBinding
 import com.saharnollily.stocksapplication.models.Stock
+import com.saharnollily.stocksapplication.utils.round
+import com.saharnollily.stocksapplication.utils.show
 
 class StocksListAdapter(
-    private val stocks: List<Stock>
+    private val stocks: List<Stock>,
+    private val deleteStock: (Int, Int) -> Unit
     ):RecyclerView.Adapter<StocksListAdapter.StocksHolder>() {
 
 
@@ -21,17 +24,22 @@ class StocksListAdapter(
 
     override fun onBindViewHolder(holder: StocksHolder, position: Int) {
         val currentStock = stocks[position]
-        holder.bind(currentStock)
+        holder.bind(currentStock, position)
     }
 
     override fun getItemCount(): Int = stocks.size
 
     inner class StocksHolder(private val binding: ComponentStockListItemBinding):RecyclerView.ViewHolder(binding.root){
 
-        fun bind(stock: Stock){
-            setStyle(binding.purchasingPriceTextView , stock.purchasingPrice.toString())
-            setStyle(binding.stockQuantityTextView , stock.stockQuantity.toString())
-            setStyle(binding.totalAmountTextView , stock.totalAmount.toString())
+        fun bind(stock: Stock, position: Int){
+            setStyle(binding.purchasingPriceTextView , stock.purchasingPrice?.round().toString())
+            setStyle(binding.stockQuantityTextView , stock.stockQuantity?.round().toString())
+            setStyle(binding.totalAmountTextView , stock.totalAmount?.round().toString())
+            binding.delete.show()
+
+            binding.delete.setOnClickListener {
+                stock.stockId?.let { it1 -> deleteStock(it1,position) }
+            }
         }
 
         fun setStyle(view: TextView, text: String){

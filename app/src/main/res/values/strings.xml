@@ -17,4 +17,7 @@
     <string name="no_stock">There is no stocks</string>
     <string name="price_difference">Price Difference =</string>
     <string name="average_price">Average Price :</string>
+    <string name="common_yes">yes</string>
+    <string name="common_no">no</string>
+    <string name="confirm_message">Are you sure?</string>
 </resources>

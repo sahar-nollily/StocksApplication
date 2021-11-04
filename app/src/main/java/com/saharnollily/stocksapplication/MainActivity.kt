@@ -1,12 +1,9 @@
 package com.saharnollily.stocksapplication
 
-import android.content.res.Configuration
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import dagger.hilt.android.AndroidEntryPoint
-import org.intellij.lang.annotations.Language
-import java.text.NumberFormat
 import java.util.*
 
 @AndroidEntryPoint

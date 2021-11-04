@@ -21,7 +21,8 @@
             style="@style/TextStyle.Regular14.TextColor1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="numberDecimal"
+            android:inputType="number"
+            android:digits="0123456789.,"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -40,7 +41,8 @@
             style="@style/TextStyle.Regular14.TextColor1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="numberDecimal"
+            android:inputType="number"
+            android:digits="0123456789.,"
             android:hint="@string/price"
             android:maxLines="1" />
 
@@ -60,7 +62,8 @@
             style="@style/TextStyle.Regular14.TextColor1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="numberDecimal"
+            android:inputType="number"
+            android:digits="0123456789.,"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>

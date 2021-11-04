@@ -51,7 +51,7 @@ class AddStockFragment : DialogFragment(R.layout.fragment_add_stock) {
 
     private fun setListener(){
         binding.addCurrencyButton.setOnClickListener {
-            viewModel.addCurrency(binding.currencyName.getText().toString())
+            viewModel.addCurrency(binding.currencyName.getText().toString().trim())
         }
     }
 

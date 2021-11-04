@@ -18,5 +18,8 @@
     <string name="no_stock">نعتذر لاتوجد لديك اسهم</string>
     <string name="price_difference">فرق السعر = </string>
     <string name="average_price">المتوسط السعري :</string>
+    <string name="common_yes">نعم</string>
+    <string name="common_no">لا</string>
+    <string name="confirm_message">هل أنت متأكد ؟</string>
 
 </resources>

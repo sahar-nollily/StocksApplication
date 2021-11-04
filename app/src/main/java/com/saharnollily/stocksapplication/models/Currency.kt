@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class Currency(
     @PrimaryKey(autoGenerate = true)val currencyId: Int = 0,
     val name: String = "",
-    val numberOfStocks: Int = 0,
+    val numberOfStocks: Float = 0f,
     val totalPrice: Float = 0f
 )

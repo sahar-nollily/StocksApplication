@@ -23,11 +23,11 @@ class CurrencyDetailsViewModel @Inject constructor(private val stocksRepository:
     val getPurchasingPriceSum = MutableLiveData<Float>()
 
 
-    fun addCurrencyInformation(currencyId: Int, stockQuantity: Int, purchasingPrice: Float, totalAmount: Float) {
+    fun addCurrencyInformation(currencyId: Int, stockQuantity: Float, purchasingPrice: Float, totalAmount: Float) {
         viewModelScope.launch {
             setEvent { StockEvent.Loading(true) }
             when {
-                stockQuantity == 0 -> {
+                stockQuantity == 0f -> {
                     setEvent { StockEvent.Error("The quantity must be greater than 0", 0) }
                 }
                 purchasingPrice == 0f -> {
@@ -55,7 +55,7 @@ class CurrencyDetailsViewModel @Inject constructor(private val stocksRepository:
         }
     }
 
-    private fun updateCurrency(stockQuantity: Int, totalAmount: Float){
+    private fun updateCurrency(stockQuantity: Float, totalAmount: Float){
         currencey?.let {
             tempCurrency = Currency(
                 it.currencyId,
@@ -77,6 +77,12 @@ class CurrencyDetailsViewModel @Inject constructor(private val stocksRepository:
             if(result != null)
                 getPurchasingPriceSum.postValue(result)
 
+        }
+    }
+
+    fun deleteStock(id: Int){
+        viewModelScope.launch {
+            stocksRepository.deleteStock(id)
         }
     }
 

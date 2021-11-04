@@ -15,6 +15,7 @@ import com.saharnollily.stocksapplication.base.viewBinding
 import com.saharnollily.stocksapplication.databinding.FragmentHomeBinding
 import com.saharnollily.stocksapplication.models.Currency
 import com.saharnollily.stocksapplication.ui.SharedViewModel
+import com.saharnollily.stocksapplication.utils.CreateConfirmationDialog
 import com.saharnollily.stocksapplication.utils.hide
 import com.saharnollily.stocksapplication.utils.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,20 +39,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
     private val deleteItem: (Int, Int) -> Unit = {position, id ->
-        val dialog = AlertDialog.Builder(requireContext())
-        dialog.setTitle("Are you sure?")
-        dialog.setPositiveButton("Yes") { dialogInterface, i ->
-            viewModel.deleteCurrency(id)
-            viewModel.currencyList.removeAt(position)
-            currenciesListAdapter?.notifyItemRemoved(position)
-
+        CreateConfirmationDialog.showAlert(requireContext()){
+            if(it) {
+                viewModel.deleteCurrency(id)
+                viewModel.currencyList.removeAt(position)
+                currenciesListAdapter?.notifyItemRemoved(position)
+            }
         }
-
-        dialog.setNegativeButton("No") { dialogInterface, i ->
-            dialogInterface.dismiss()
-        }
-
-        dialog.show()
     }
 
     private val updateItem: (String, Int) -> Unit = {name, id ->
@@ -72,12 +66,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun initObserve(){
         viewModel.event.observe(viewLifecycleOwner,{initEvent(it)})
         viewModel.getAllCurrency.observe(viewLifecycleOwner,{fillGui(it)})
-
-//
-//        if(viewModel.currencyList.isNullOrEmpty())
-//            viewModel.getAllCurrency.observe(viewLifecycleOwner,{fillGui(it)})
-//        else
-//            setupRecyclerView()
     }
 
     private fun initEvent(stockEvent: HomeViewModel.StockEvent) {

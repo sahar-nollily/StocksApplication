@@ -39,6 +39,10 @@ class StocksDataSourceImp @Inject constructor(private val stocksDao: StocksDao):
         return stocksDao.deleteCurrency(id)
     }
 
+    override suspend fun deleteStock(id: Int) {
+        return stocksDao.deleteStock(id)
+    }
+
     override suspend fun updateCurrencyName(id: Int, name: String) {
         return stocksDao.updateCurrencyName(id, name)
     }
