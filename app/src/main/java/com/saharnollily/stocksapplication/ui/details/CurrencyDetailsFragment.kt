@@ -33,10 +33,10 @@ class CurrencyDetailsFragment : Fragment(R.layout.fragment_currency_details) {
         viewModel.addCurrencyInformation(args.currencyId, stockQuantity,purchasingPrice, totalAmount)
     }
 
-    private val deleteStock: (Int, Int) -> Unit = {id, position ->
+    private val deleteStock: (Stock, Int) -> Unit = {stock, position ->
         CreateConfirmationDialog.showAlert(requireContext()){
             if(it) {
-                viewModel.deleteStock(id)
+                viewModel.deleteStock(stock.stockId,stock.stockQuantity,stock.totalAmount)
                 viewModel.data.removeAt(position)
             }
         }

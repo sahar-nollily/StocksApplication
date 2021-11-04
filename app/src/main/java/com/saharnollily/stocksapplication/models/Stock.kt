@@ -11,9 +11,9 @@ import androidx.room.PrimaryKey
     onDelete = ForeignKey.CASCADE
 )])
 data class Stock(
-    @PrimaryKey(autoGenerate = true)val stockId: Int? = 0,
-    val currencyId: Int? = 0,
-    val stockQuantity: Float? = 0f,
-    val purchasingPrice: Float? = 0f,
-    val totalAmount: Float? = 0f
+    @PrimaryKey(autoGenerate = true)val stockId: Int = 0,
+    val currencyId: Int = 0,
+    val stockQuantity: Float = 0f,
+    val purchasingPrice: Float = 0f,
+    val totalAmount: Float = 0f
 )

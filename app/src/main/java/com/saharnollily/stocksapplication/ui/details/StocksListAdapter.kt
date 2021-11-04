@@ -13,7 +13,7 @@ import com.saharnollily.stocksapplication.utils.show
 
 class StocksListAdapter(
     private val stocks: List<Stock>,
-    private val deleteStock: (Int, Int) -> Unit
+    private val deleteStock: (Stock, Int) -> Unit
     ):RecyclerView.Adapter<StocksListAdapter.StocksHolder>() {
 
 
@@ -38,7 +38,7 @@ class StocksListAdapter(
             binding.delete.show()
 
             binding.delete.setOnClickListener {
-                stock.stockId?.let { it1 -> deleteStock(it1,position) }
+                stock.let { it1 -> deleteStock(it1,position) }
             }
         }
 
