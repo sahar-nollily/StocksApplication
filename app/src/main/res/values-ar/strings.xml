@@ -4,10 +4,10 @@
     <string name="stock_quantity">عدد الوحدات : </string>
     <string name="usdt">المبلغ الإجمالي : </string>
     <string name="current_purchase_price">سعر الشراء الحالي</string>
-    <string name="quantity">الكمية</string>
-    <string name="purchasing_price">سعر الشراء</string>
+    <string name="quantity">الكمية :</string>
+    <string name="purchasing_price">سعر الشراء :</string>
     <string name="price">سعر الشراء</string>
-    <string name="total_amount">المبلغ الاجمالي</string>
+    <string name="total_amount">المبلغ الاجمالي :</string>
     <string name="add_currency">إضافة عملة</string>
     <string name="currency_name">اسم العملة</string>
     <string name="add">إضافة</string>
@@ -20,6 +20,6 @@
     <string name="average_price">المتوسط السعري :</string>
     <string name="common_yes">نعم</string>
     <string name="common_no">لا</string>
-    <string name="confirm_message">هل أنت متأكد ؟</string>
+    <string name="confirm_message">هل أنت متأكد من الحذف ؟</string>
 
 </resources>

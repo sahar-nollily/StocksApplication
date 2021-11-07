@@ -1,46 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingVertical="10dp"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
     tools:context=".utils.costum_ui.ComponentStockListItem">
 
     <TextView
-        style="@style/TextStyle.Bold15.TextColor3"
         android:id="@+id/stockQuantityTextView"
-        android:layout_width="match_parent"
+        style="@style/TextStyle.Regular15.TextColor4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/quantity" />
+        android:text="@string/quantity"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/stockQuantity"
+        app:layout_constraintEnd_toStartOf="@+id/delete"
+        app:layout_constraintStart_toEndOf="@+id/stockQuantity"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        style="@style/TextStyle.Bold15.TextColor3"
         android:id="@+id/purchasingPriceTextView"
-        android:layout_width="match_parent"
+        style="@style/TextStyle.Regular15.TextColor4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/purchasing_price" />
+        android:text="@string/purchasing_price"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/purchasingPrice"
+        app:layout_constraintEnd_toEndOf="@+id/stockQuantityTextView"
+        app:layout_constraintStart_toEndOf="@+id/purchasingPrice"
+        app:layout_constraintTop_toTopOf="@+id/purchasingPrice" />
 
     <TextView
-        style="@style/TextStyle.Bold15.TextColor3"
         android:id="@+id/totalAmountTextView"
-        android:layout_width="match_parent"
+        style="@style/TextStyle.Regular15.TextColor4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/total_amount" />
+        android:text="@string/total_amount"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/totalAmount"
+        app:layout_constraintEnd_toStartOf="@+id/delete"
+        app:layout_constraintStart_toEndOf="@+id/totalAmount"
+        app:layout_constraintTop_toTopOf="@+id/totalAmount" />
+
+    <TextView
+        android:id="@+id/stockQuantity"
+        style="@style/TextStyle.Bold15.TextColor3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quantity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/purchasingPrice"
+        style="@style/TextStyle.Bold15.TextColor3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/purchasing_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stockQuantity"
+        />
+
+    <TextView
+        android:id="@+id/totalAmount"
+        style="@style/TextStyle.Bold15.TextColor3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_amount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/purchasingPrice" />
 
     <ImageView
         android:id="@+id/delete"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:src="@drawable/ic_trash"
         android:background="@drawable/bg_pressed_background_transpernt"
+        android:src="@drawable/ic_trash"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
-</LinearLayout>
+    <View
+        android:id="@+id/divider"
+        style="@style/divider"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalAmount" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

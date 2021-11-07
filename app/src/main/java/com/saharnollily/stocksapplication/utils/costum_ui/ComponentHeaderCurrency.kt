@@ -95,6 +95,7 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
                         "${stockNumber * p0.toString().toFloat().round()}"
                     )
                     val round = newUSDT.text.toString().toFloat() - totalPrice
+                    priceDifference.show()
                     priceDifference.text = "${context.getString(R.string.price_difference)} ${round.round()}"
                         stockPrice.error = null
                 }else if(p0.isNullOrEmpty()){

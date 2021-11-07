@@ -130,10 +130,8 @@ class CurrencyDetailsFragment : Fragment(R.layout.fragment_currency_details) {
     }
     private fun stocksRecyclerView(){
         if(viewModel.data.isNullOrEmpty()){
-            binding.stockHeader.hide()
             binding.stocksRecyclerView.hide()
         }else{
-            binding.stockHeader.show()
             binding.stocksRecyclerView.show()
             binding.stocksRecyclerView.apply {
                 adapter = StocksListAdapter(viewModel.data, deleteStock)

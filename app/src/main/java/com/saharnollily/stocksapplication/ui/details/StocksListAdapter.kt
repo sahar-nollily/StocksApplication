@@ -32,21 +32,15 @@ class StocksListAdapter(
     inner class StocksHolder(private val binding: ComponentStockListItemBinding):RecyclerView.ViewHolder(binding.root){
 
         fun bind(stock: Stock, position: Int){
-            setStyle(binding.purchasingPriceTextView , stock.purchasingPrice?.round().toString())
-            setStyle(binding.stockQuantityTextView , stock.stockQuantity?.round().toString())
-            setStyle(binding.totalAmountTextView , stock.totalAmount?.round().toString())
+            binding.purchasingPriceTextView.text = stock.purchasingPrice?.round().toString()
+            binding.stockQuantityTextView.text = stock.stockQuantity?.round().toString()
+            binding.totalAmountTextView.text = stock.totalAmount?.round().toString()
+
             binding.delete.show()
 
             binding.delete.setOnClickListener {
                 stock.stockId?.let { it1 -> deleteStock(it1,position) }
             }
         }
-
-        fun setStyle(view: TextView, text: String){
-            view.setTextColor(binding.root.context.resources.getColor(R.color.text_color_4,null))
-            view.text = text
-
-        }
-
     }
 }

@@ -3,10 +3,10 @@
     <string name="stock_quantity">Stock Quantity: </string>
     <string name="usdt">USDT: </string>
     <string name="current_purchase_price">Current Price</string>
-    <string name="quantity">Quantity</string>
-    <string name="purchasing_price">Purchasing Price</string>
+    <string name="quantity">Quantity :</string>
+    <string name="purchasing_price">Purchasing Price :</string>
     <string name="price">Price</string>
-    <string name="total_amount">Total Amount</string>
+    <string name="total_amount">Total Amount :</string>
     <string name="add_currency">Add Currency</string>
     <string name="currency_name">Currency Name</string>
     <string name="add">Add</string>
@@ -19,5 +19,5 @@
     <string name="average_price">Average Price :</string>
     <string name="common_yes">yes</string>
     <string name="common_no">no</string>
-    <string name="confirm_message">Are you sure?</string>
+    <string name="confirm_message">Are you sure want delete?</string>
 </resources>

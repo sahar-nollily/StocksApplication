@@ -64,22 +64,12 @@
         app:layout_constraintTop_toBottomOf="@+id/componentAddStock" />
 
 
-    <com.saharnollily.stocksapplication.utils.costum_ui.ComponentStockListItem
-        android:id="@+id/stockHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveStockButton"
-        android:visibility="gone"
-        tools:visibility="visible"/>
-
     <View
         android:id="@+id/divider"
         style="@style/divider"
         android:layout_marginBottom="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stockHeader"
+        app:layout_constraintTop_toBottomOf="@+id/saveStockButton"
         android:visibility="gone"
         tools:visibility="visible"/>
 
