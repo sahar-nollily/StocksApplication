@@ -37,7 +37,7 @@ class CurrencyDetailsViewModel @Inject constructor(private val stocksRepository:
                     setEvent { StockEvent.Error("There is something wrong", 2) }
                 }
                 else -> {
-                    val currencyInformation = Stock(null,currencyId,stockQuantity, purchasingPrice, totalAmount)
+                    val currencyInformation = Stock(0,currencyId,stockQuantity, purchasingPrice, totalAmount)
                     stocksRepository.addStock(currencyInformation)
                     setEvent { StockEvent.SuccessAdd(true) }
                     updateCurrency(stockQuantity, totalAmount)
@@ -71,6 +71,22 @@ class CurrencyDetailsViewModel @Inject constructor(private val stocksRepository:
         }
     }
 
+    private fun updateCurrencyMinus(stockQuantity: Float, totalAmount: Float){
+        currencey?.let {
+            tempCurrency = Currency(
+                it.currencyId,
+                it.name,
+                it.numberOfStocks - stockQuantity,
+                it.totalPrice - totalAmount
+            )
+        }
+
+        viewModelScope.launch {
+            tempCurrency?.let { stocksRepository.updateCurrency(it) }
+            setEvent { StockEvent.SuccessUpdate(true) }
+        }
+    }
+
     fun getSum(id: Int){
         viewModelScope.launch {
             val result = stocksRepository.getPurchasingPriceSum(id)
@@ -80,9 +96,10 @@ class CurrencyDetailsViewModel @Inject constructor(private val stocksRepository:
         }
     }
 
-    fun deleteStock(id: Int){
+    fun deleteStock(id: Int,stockQuantity: Float, totalAmount: Float){
         viewModelScope.launch {
             stocksRepository.deleteStock(id)
+            updateCurrencyMinus(stockQuantity, totalAmount)
         }
     }
 
