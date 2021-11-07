@@ -7,7 +7,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.saharnollily.stocksapplication.databinding.ComponentAddStockBinding
-import com.saharnollily.stocksapplication.utils.round
 import java.lang.NumberFormatException
 
 

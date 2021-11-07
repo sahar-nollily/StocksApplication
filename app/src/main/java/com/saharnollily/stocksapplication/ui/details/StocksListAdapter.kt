@@ -1,14 +1,10 @@
 package com.saharnollily.stocksapplication.ui.details
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.saharnollily.stocksapplication.R
 import com.saharnollily.stocksapplication.databinding.ComponentStockListItemBinding
 import com.saharnollily.stocksapplication.models.Stock
-import com.saharnollily.stocksapplication.utils.round
 import com.saharnollily.stocksapplication.utils.show
 
 class StocksListAdapter(
@@ -32,9 +28,9 @@ class StocksListAdapter(
     inner class StocksHolder(private val binding: ComponentStockListItemBinding):RecyclerView.ViewHolder(binding.root){
 
         fun bind(stock: Stock, position: Int){
-            binding.purchasingPriceTextView.text = stock.purchasingPrice?.round().toString()
-            binding.stockQuantityTextView.text = stock.stockQuantity?.round().toString()
-            binding.totalAmountTextView.text = stock.totalAmount?.round().toString()
+            binding.purchasingPriceTextView.text = stock.purchasingPrice.toString()
+            binding.stockQuantityTextView.text = stock.stockQuantity.toString()
+            binding.totalAmountTextView.text = stock.totalAmount.toString()
 
             binding.delete.show()
 

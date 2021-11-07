@@ -1,7 +1,6 @@
 package com.saharnollily.stocksapplication.ui.details
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,7 +16,6 @@ import com.saharnollily.stocksapplication.models.Stock
 import com.saharnollily.stocksapplication.ui.SharedViewModel
 import com.saharnollily.stocksapplication.utils.CreateConfirmationDialog
 import com.saharnollily.stocksapplication.utils.hide
-import com.saharnollily.stocksapplication.utils.round
 import com.saharnollily.stocksapplication.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -73,7 +71,7 @@ class CurrencyDetailsFragment : Fragment(R.layout.fragment_currency_details) {
             if(viewModel.data.size != 0){
                 binding.averagePrice.show()
                 val round = it / viewModel.data.size
-                binding.averagePrice.text ="${requireContext().getString(R.string.average_price)} ${round.round()}"
+                binding.averagePrice.text ="${requireContext().getString(R.string.average_price)} ${round}"
             }
         })
     }

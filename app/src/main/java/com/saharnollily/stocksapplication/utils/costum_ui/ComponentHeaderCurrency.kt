@@ -3,24 +3,19 @@ package com.saharnollily.stocksapplication.utils.costum_ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.PorterDuff
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.intl.Locale
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import com.google.android.material.snackbar.Snackbar
 import com.saharnollily.stocksapplication.R
 import com.saharnollily.stocksapplication.databinding.ComponentHeaderCurrencyBinding
 import com.saharnollily.stocksapplication.utils.hide
 import com.saharnollily.stocksapplication.utils.invisible
-import com.saharnollily.stocksapplication.utils.round
 import com.saharnollily.stocksapplication.utils.show
 
 
@@ -54,14 +49,14 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
 
     fun setStockNumber(stockNumber: Float?){
         stockNumber?.let {
-            this.stockNumber.text = it.round().toString()
+            this.stockNumber.text = it.toString()
         }
     }
 
     @SuppressLint("SetTextI18n")
     fun setTotalPrice(total: Float?){
         total?.let {
-            totalPrice.text = "${it.round()}$"
+            totalPrice.text = "${it}$"
         }
     }
 
@@ -81,7 +76,7 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
             calculatorLinearLayout.hide()
         }
 
-        newUSDT.setText("${totalPrice.round()}")
+        newUSDT.setText("${totalPrice}")
 
 
 
@@ -92,11 +87,11 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(!p0.isNullOrEmpty() && totalPrice != 0f) {
                     newUSDT.setText(
-                        "${stockNumber * p0.toString().toFloat().round()}"
+                        "${stockNumber * p0.toString().toFloat()}"
                     )
                     val round = newUSDT.text.toString().toFloat() - totalPrice
                     priceDifference.show()
-                    priceDifference.text = "${context.getString(R.string.price_difference)} ${round.round()}"
+                    priceDifference.text = "${context.getString(R.string.price_difference)} ${round}"
                         stockPrice.error = null
                 }else if(p0.isNullOrEmpty()){
                     stockPrice.error = null
