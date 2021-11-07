@@ -15,12 +15,12 @@ fun View.invisible(){
     visibility = View.INVISIBLE
 }
 
-//fun Float.round(decimals: Int = 2): Float
-//    {
-//        val x = if(this.toString().contains(",")){
-//            this.toString().replace(",", ".").toFloat()
-//        }else{
-//            this
-//        }
-//        return "%.${decimals}f".format(Locale.ENGLISH, x).toFloat()
-//}
+fun Float.round(decimals: Int = 2): Float
+    {
+        val x = if(this.toString().contains(",")){
+            this.toString().replace(",", ".").toFloat()
+        }else{
+            this
+        }
+        return "%.${decimals}f".format(Locale.ENGLISH, x).toFloat()
+}

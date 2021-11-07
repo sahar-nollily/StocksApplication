@@ -16,6 +16,7 @@ import com.saharnollily.stocksapplication.R
 import com.saharnollily.stocksapplication.databinding.ComponentHeaderCurrencyBinding
 import com.saharnollily.stocksapplication.utils.hide
 import com.saharnollily.stocksapplication.utils.invisible
+import com.saharnollily.stocksapplication.utils.round
 import com.saharnollily.stocksapplication.utils.show
 
 
@@ -56,7 +57,7 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
     @SuppressLint("SetTextI18n")
     fun setTotalPrice(total: Float?){
         total?.let {
-            totalPrice.text = "${it}$"
+            totalPrice.text = "${it.round()}$"
         }
     }
 
