@@ -50,4 +50,8 @@ class StocksDataSourceImp @Inject constructor(private val stocksDao: StocksDao):
     override suspend fun getPurchasingPriceSum(id: Int): Float? {
         return stocksDao.getPurchasingPriceSum(id)
     }
+
+    override suspend fun getTotalPriceSum(): Float? {
+        return stocksDao.getTotalPriceSum()
+    }
 }

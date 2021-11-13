@@ -9,6 +9,7 @@
     <string name="price">سعر الشراء</string>
     <string name="total_amount">المبلغ الاجمالي :</string>
     <string name="add_currency">إضافة عملة</string>
+    <string name="total_wallet">إجمالي المحفظة :</string>
     <string name="currency_name">اسم العملة</string>
     <string name="add">إضافة</string>
     <string name="buying_new_stock">شراء سهم جديد</string>

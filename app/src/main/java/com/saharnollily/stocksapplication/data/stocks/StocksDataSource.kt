@@ -28,5 +28,7 @@ interface StocksDataSource {
 
     suspend fun getPurchasingPriceSum(id: Int): Float?
 
+    suspend fun getTotalPriceSum(): Float?
+
 
 }

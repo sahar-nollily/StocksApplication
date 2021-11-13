@@ -16,6 +16,7 @@ import com.saharnollily.stocksapplication.databinding.FragmentHomeBinding
 import com.saharnollily.stocksapplication.models.Currency
 import com.saharnollily.stocksapplication.ui.SharedViewModel
 import com.saharnollily.stocksapplication.utils.CreateConfirmationDialog
+import com.saharnollily.stocksapplication.utils.actualNumber
 import com.saharnollily.stocksapplication.utils.hide
 import com.saharnollily.stocksapplication.utils.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,7 +57,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.getSum()
         initObserve()
         setListener()
 
@@ -66,6 +67,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun initObserve(){
         viewModel.event.observe(viewLifecycleOwner,{initEvent(it)})
         viewModel.getAllCurrency.observe(viewLifecycleOwner,{fillGui(it)})
+        viewModel.getTotalPriceSum.observe(viewLifecycleOwner,{
+            binding.totalPrice.text = getString(R.string.total_wallet)+" "+it.actualNumber()
+        })
     }
 
     private fun initEvent(stockEvent: HomeViewModel.StockEvent) {

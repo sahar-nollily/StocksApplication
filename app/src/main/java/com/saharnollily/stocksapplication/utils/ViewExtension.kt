@@ -1,6 +1,8 @@
 package com.saharnollily.stocksapplication.utils
 
 import android.view.View
+import java.lang.String
+import java.math.BigDecimal
 import java.util.*
 
 fun View.hide(){
@@ -23,4 +25,9 @@ fun Float.round(decimals: Int = 2): Float
             this
         }
         return "%.${decimals}f".format(Locale.ENGLISH, x).toFloat()
+}
+
+fun Float.actualNumber(): kotlin.String
+{
+    return BigDecimal(this.toString()).toPlainString()
 }

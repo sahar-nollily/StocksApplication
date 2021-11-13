@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.saharnollily.stocksapplication.databinding.ComponentStockListItemBinding
 import com.saharnollily.stocksapplication.models.Stock
+import com.saharnollily.stocksapplication.utils.actualNumber
 import com.saharnollily.stocksapplication.utils.show
 
 class StocksListAdapter(
@@ -28,9 +29,9 @@ class StocksListAdapter(
     inner class StocksHolder(private val binding: ComponentStockListItemBinding):RecyclerView.ViewHolder(binding.root){
 
         fun bind(stock: Stock, position: Int){
-            binding.purchasingPriceTextView.text = stock.purchasingPrice.toString()
-            binding.stockQuantityTextView.text = stock.stockQuantity.toString()
-            binding.totalAmountTextView.text = stock.totalAmount.toString()
+            binding.purchasingPriceTextView.text = stock.purchasingPrice.actualNumber()
+            binding.stockQuantityTextView.text = stock.stockQuantity.actualNumber()
+            binding.totalAmountTextView.text = stock.totalAmount.actualNumber()
 
             binding.delete.show()
 

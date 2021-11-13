@@ -41,4 +41,7 @@ interface StocksDao {
 
     @Query("SELECT SUM(purchasingPrice) FROM stock WHERE currencyId = :id")
     suspend fun getPurchasingPriceSum(id: Int): Float?
+
+    @Query("SELECT SUM(totalPrice) FROM currency")
+    suspend fun getTotalPriceSum(): Float?
 }

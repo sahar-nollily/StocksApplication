@@ -51,4 +51,8 @@ class StocksRepository @Inject constructor(private val stocksDataSource: StocksD
         return stocksDataSource.getPurchasingPriceSum(id)
     }
 
+    suspend fun getTotalPriceSum(): Float? {
+        return stocksDataSource.getTotalPriceSum()
+    }
+
 }

@@ -12,7 +12,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val stocksRepository: StocksRepository): BaseViewModel<HomeViewModel.StockEvent>() {
 
     var currencyList = mutableListOf<Currency>()
-
+    val getTotalPriceSum = MutableLiveData<Float>()
     val getAllCurrency: LiveData<List<Currency>>  = stocksRepository.getCurrencies().asLiveData()
 
     fun getCurrencyById(id: Int?){
@@ -38,6 +38,15 @@ class HomeViewModel @Inject constructor(private val stocksRepository: StocksRepo
     fun updateCurrencyName(id: Int, name: String){
         viewModelScope.launch {
             stocksRepository.updateCurrencyName(id, name)
+        }
+    }
+
+    fun getSum(){
+        viewModelScope.launch {
+            val result = stocksRepository.getTotalPriceSum()
+            if(result != null)
+                getTotalPriceSum.postValue(result)
+
         }
     }
 

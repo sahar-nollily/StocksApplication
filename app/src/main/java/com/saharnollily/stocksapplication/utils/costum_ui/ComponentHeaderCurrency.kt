@@ -14,10 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.saharnollily.stocksapplication.R
 import com.saharnollily.stocksapplication.databinding.ComponentHeaderCurrencyBinding
-import com.saharnollily.stocksapplication.utils.hide
-import com.saharnollily.stocksapplication.utils.invisible
-import com.saharnollily.stocksapplication.utils.round
-import com.saharnollily.stocksapplication.utils.show
+import com.saharnollily.stocksapplication.utils.*
 
 
 class ComponentHeaderCurrency @JvmOverloads constructor(
@@ -50,14 +47,14 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
 
     fun setStockNumber(stockNumber: Float?){
         stockNumber?.let {
-            this.stockNumber.text = it.toString()
+            this.stockNumber.text = it.actualNumber()
         }
     }
 
     @SuppressLint("SetTextI18n")
     fun setTotalPrice(total: Float?){
         total?.let {
-            totalPrice.text = "${it.round()}$"
+            totalPrice.text = "${it.actualNumber()}$"
         }
     }
 
@@ -77,7 +74,7 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
             calculatorLinearLayout.hide()
         }
 
-        newUSDT.setText("${totalPrice}")
+        newUSDT.setText("${totalPrice.actualNumber()}")
 
 
 
@@ -88,7 +85,7 @@ class ComponentHeaderCurrency @JvmOverloads constructor(
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(!p0.isNullOrEmpty() && totalPrice != 0f) {
                     newUSDT.setText(
-                        "${stockNumber * p0.toString().toFloat()}"
+                        "${(stockNumber * p0.toString().toFloat()).actualNumber()}"
                     )
                     val round = newUSDT.text.toString().toFloat() - totalPrice
                     priceDifference.show()

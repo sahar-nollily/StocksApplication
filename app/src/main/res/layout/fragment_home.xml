@@ -8,14 +8,25 @@
 
     <TextView
         android:id="@+id/textView"
-        style="@style/TextStyle.Regular15.TextColor1"
-        android:layout_width="match_parent"
+        style="@style/TextStyle.Bold15.TextColor1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:text="@string/your_currency"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textAlignment="viewStart"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalPrice"
+        style="@style/TextStyle.Regular15.TextColor3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="@string/total_wallet"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
