@@ -45,6 +45,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 viewModel.deleteCurrency(id)
                 viewModel.currencyList.removeAt(position)
                 currenciesListAdapter?.notifyItemRemoved(position)
+                viewModel.getSum()
+
             }
         }
     }

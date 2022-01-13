@@ -46,6 +46,8 @@ class HomeViewModel @Inject constructor(private val stocksRepository: StocksRepo
             val result = stocksRepository.getTotalPriceSum()
             if(result != null)
                 getTotalPriceSum.postValue(result)
+            else
+                getTotalPriceSum.postValue(0f)
 
         }
     }
